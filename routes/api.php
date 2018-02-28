@@ -17,10 +17,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function() {
+/*Route::prefix('v1')->group(function() {
     Route::get('/products', 'ProductsController@index');
     Route::post('/products', 'ProductsController@store');
     Route::put('/products/{product}', 'ProductsController@update');
     Route::get('/products/{product}', 'ProductsController@show');
     Route::delete('/products/{product}', 'ProductsController@destroy');
+});*/
+Route::prefix('v1')->group(function() {
+    Route::resource('/products', 'ProductsController');
+    Route::resource('/users', 'UsersController');
 });

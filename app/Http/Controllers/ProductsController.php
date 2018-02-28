@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ProductsRequest;
 use App\Product;
 
 class ProductsController extends Controller
@@ -12,12 +12,12 @@ class ProductsController extends Controller
         return Product::all();
     }
 
-    public function store(Request $request)
+    public function store(ProductsRequest $request)
     {
         return Product::create($request->all());
     }
 
-    public function update(Request $request, Product $product)
+    public function update(ProductsRequest $request, Product $product)
     {
         $product->update($request->all());
         return $product;
@@ -28,7 +28,7 @@ class ProductsController extends Controller
         return $product;
     }
 
-    public function destroy(Request $request, Product $product)
+    public function destroy(ProductsRequest $request, Product $product)
     {
         $product->delete();
         return $product;
