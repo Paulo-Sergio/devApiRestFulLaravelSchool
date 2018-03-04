@@ -27,5 +27,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::routes();
+        //Passport::enableImplicitGrant();
+
+        // token sera válido por 1 hora
+        Passport::tokensExpireIn(\Carbon\Carbon::now()->addHours(1));
+        // token refresh válido por 20 dias
+        Passport::refreshTokensExpireIn(\Carbon\Carbon::now()->addDays(20));
     }
 }

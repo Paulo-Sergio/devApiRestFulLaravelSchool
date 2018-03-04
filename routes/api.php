@@ -24,7 +24,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::get('/products/{product}', 'ProductsController@show');
     Route::delete('/products/{product}', 'ProductsController@destroy');
 });*/
-Route::prefix('v1')->group(function() {
+Route::middleware('auth:api')->prefix('v1')->group(function() {
+
+    // rota para pegar usuario logado (token)
+    Route::get('users/me', function(){
+        return request()->user();
+    });
+
     Route::resource('/products', 'ProductsController');
     Route::resource('/users', 'UsersController');
 });
